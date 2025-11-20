@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jurnalku_mobile/permintaansaksi_page.dart';
-import 'package:jurnalku_mobile/setting_page.dart';
 import 'login_page.dart';
 
 void main() {
