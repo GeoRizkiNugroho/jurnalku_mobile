@@ -43,7 +43,18 @@ class SettingPage extends StatelessWidget {
             automaticallyImplyLeading: false,
             title: Row(
               children: [
-               Icon(Icons.home_outlined, color: Colors.black87),
+               Icon(Icons.home_outlined, color: Colors.grey[700]),
+               SizedBox(width: 8),
+               Icon(Icons.arrow_forward_ios, color: Colors.grey[700], size: 10),
+               SizedBox(width: 8),
+            Text(
+              "Pengaturan Akun",
+              style: TextStyle(
+                color: Colors.grey[700],
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
                Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
