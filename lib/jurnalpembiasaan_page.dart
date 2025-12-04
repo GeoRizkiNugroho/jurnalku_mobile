@@ -7,59 +7,45 @@ class JurnalpembiasaanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
-      // ================= APP BAR (TIDAK DIUBAH) =================
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55),
         child: Container(
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
-          ]),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
+            ],
+          ),
           child: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
             automaticallyImplyLeading: false,
-            title: const Text("Jurnal Pembiasaan",
-                style: TextStyle(color: Colors.black)),
+            title: const Text(
+              "Jurnal Pembiasaan",
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         ),
       ),
-      // ==========================================================
-
       body: ListView(
         padding: const EdgeInsets.only(bottom: 40),
         children: [
           const SizedBox(height: 20),
-
-          // ========================== BAGIAN A ==========================
           _sectionTitle("A. Pembiasaan harian"),
           const SizedBox(height: 8),
           _dummyCalendar(),
-
           const SizedBox(height: 26),
-
-          // ========================== BAGIAN B ==========================
           _sectionTitle("B. Pekerjaan yang dilakukan"),
           const SizedBox(height: 8),
           _dummyTable("Belum ada pekerjaan yang diinput.", "+ Tambah Pekerjaan"),
-
           const SizedBox(height: 26),
-
-          // ========================== BAGIAN C ==========================
           _buildMateriSection(),
-
           const SizedBox(height: 26),
-
-          // ========================== BAGIAN D ==========================
           _buildPoinSection(),
         ],
       ),
     );
   }
-
-  // ===========================================================================
-  //                                BAGIAN C
-  // ===========================================================================
 
   Widget _buildMateriSection() {
     return Padding(
@@ -69,7 +55,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
         children: [
           _sectionTitle("C. Materi yang dipelajari"),
           const SizedBox(height: 12),
-
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -77,7 +62,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // Header tabel
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
@@ -92,8 +76,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                // Isi tabel
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   child: const Center(
@@ -103,8 +85,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Tombol tambah
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
@@ -115,19 +95,14 @@ class JurnalpembiasaanPage extends StatelessWidget {
                     onTap: () {},
                     child: const Text(
                       "+ Tambah Materi",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
                     ),
                   ),
                 )
               ],
             ),
           ),
-
           const SizedBox(height: 8),
-
           Row(
             children: const [
               Icon(Icons.circle, size: 12, color: Colors.green),
@@ -146,10 +121,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
     );
   }
 
-  // ===========================================================================
-  //                                BAGIAN D
-  // ===========================================================================
-
   Widget _buildPoinSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -158,7 +129,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
         children: [
           _sectionTitle("D. Poin"),
           const SizedBox(height: 12),
-
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -166,7 +136,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                // HEADER
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.grey.shade200,
@@ -195,13 +164,10 @@ class JurnalpembiasaanPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 _rowPoin("(5) mengerjakan project/update progres", ["0", "0", "0", "0"]),
                 _rowPoin("(1-5) Poin dari pertanyaan materi", ["0", "0", "0", "0"]),
                 _rowPoin("Jumlah poin minggu ini", ["0", "0", "0", "0"]),
                 _rowPoin("Jumlah poin ceklist pembiasaan", ["0"]),
-
-                // TOTAL
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   decoration: BoxDecoration(
@@ -209,9 +175,7 @@ class JurnalpembiasaanPage extends StatelessWidget {
                   ),
                   child: Row(
                     children: const [
-                      Expanded(
-                        child: Center(child: Text("Jumlah keseluruhan poin")),
-                      ),
+                      Expanded(child: Center(child: Text("Jumlah keseluruhan poin"))),
                       SizedBox(
                         width: 80,
                         child: Center(
@@ -231,10 +195,6 @@ class JurnalpembiasaanPage extends StatelessWidget {
       ),
     );
   }
-
-  // ===========================================================================
-  //                            WIDGET REUSABLE
-  // ===========================================================================
 
   Widget _rowPoin(String title, List<String> values) {
     return Container(
@@ -265,17 +225,10 @@ class JurnalpembiasaanPage extends StatelessWidget {
     );
   }
 
-  // ===========================================================================
-  //                              DUMMY SECTION
-  // ===========================================================================
-
   Widget _sectionTitle(String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Text(
-        text,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-      ),
+      child: Text(text, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
     );
   }
 
@@ -289,7 +242,7 @@ class JurnalpembiasaanPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         alignment: Alignment.center,
-        child: const Text("Kalender disini (dummy)"),
+        child: const Text("Kalender disini"),
       ),
     );
   }
@@ -314,10 +267,7 @@ class JurnalpembiasaanPage extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border(top: BorderSide(color: Colors.grey.shade300)),
               ),
-              child: Text(
-                addText,
-                style: const TextStyle(color: Colors.blue),
-              ),
+              child: Text(addText, style: const TextStyle(color: Colors.blue)),
             ),
           ],
         ),
