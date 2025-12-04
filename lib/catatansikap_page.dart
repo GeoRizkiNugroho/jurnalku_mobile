@@ -15,9 +15,9 @@ class CatatanSikapPage extends StatelessWidget {
         title: Row(
           children: [
             Icon(Icons.home, color: Colors.grey[700], size: 20),
-            const SizedBox(width: 8),
+           SizedBox(width: 8),
             Icon(Icons.arrow_forward_ios, color: Colors.grey[500], size: 10),
-            const SizedBox(width: 8),
+           SizedBox(width: 8),
             Text(
               "Catatan Sikap",
               style: TextStyle(
@@ -30,7 +30,7 @@ class CatatanSikapPage extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 12.0),
+            padding: EdgeInsets.only(right: 12.0),
             child: Row(
               children: [
                 Column(
@@ -51,12 +51,12 @@ class CatatanSikapPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(width: 8),
+               SizedBox(width: 8),
                 CircleAvatar(
                   radius: 15,
                   backgroundImage: AssetImage("assets/images/profile.png"),
                 ),
-                const SizedBox(width: 4),
+               SizedBox(width: 4),
                 Icon(
                   Icons.keyboard_arrow_down,
                   color: Colors.grey[700],
@@ -70,7 +70,7 @@ class CatatanSikapPage extends StatelessWidget {
 
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18),
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -82,21 +82,21 @@ class CatatanSikapPage extends StatelessWidget {
                   color: Colors.grey[800],
                 ),
               ),
-              const SizedBox(height: 6),
+             SizedBox(height: 6),
               Text(
                 "Lihat catatan sikap dan perilaku yang telah dilaporkan",
                 style: TextStyle(fontSize: 14, color: Colors.grey[600]),
               ),
-              const SizedBox(height: 14),
+             SizedBox(height: 14),
 
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(14),
+                padding: EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   color: Colors.amber[50],
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: const Color.fromARGB(255, 255, 213, 87),
+                    color: Color.fromARGB(255, 255, 213, 87),
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -114,7 +114,7 @@ class CatatanSikapPage extends StatelessWidget {
                       color: Colors.orange,
                       size: 22,
                     ),
-                    const SizedBox(width: 12),
+                   SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         "Perhatian\nJika Anda merasa ada catatan yang tidak sesuai atau keliru, silakan hubungi guru jurusan untuk mengajukan klarifikasi.",
@@ -125,10 +125,10 @@ class CatatanSikapPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 18),
+             SizedBox(height: 18),
 
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   vertical: 16,
                   horizontal: 14,
                 ),
@@ -156,7 +156,7 @@ class CatatanSikapPage extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                           ),
-                          const SizedBox(height: 8),
+                         SizedBox(height: 8),
                           Text(
                             "0",
                             style: TextStyle(
@@ -172,10 +172,10 @@ class CatatanSikapPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 12),
+             SizedBox(height: 12),
 
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   vertical: 16,
                   horizontal: 14,
                 ),
@@ -203,7 +203,7 @@ class CatatanSikapPage extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                           ),
-                          const SizedBox(height: 8),
+                         SizedBox(height: 8),
                           Text(
                             "0",
                             style: TextStyle(
@@ -219,10 +219,10 @@ class CatatanSikapPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 12),
+             SizedBox(height: 12),
 
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   vertical: 16,
                   horizontal: 14,
                 ),
@@ -250,7 +250,7 @@ class CatatanSikapPage extends StatelessWidget {
                               color: Colors.grey[600],
                             ),
                           ),
-                          const SizedBox(height: 8),
+                         SizedBox(height: 8),
                           Text(
                             "0",
                             style: TextStyle(
@@ -266,11 +266,11 @@ class CatatanSikapPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 20),
+             SizedBox(height: 20),
 
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -290,12 +290,12 @@ class CatatanSikapPage extends StatelessWidget {
                         headingRowHeight: 50,
                         dataRowHeight: 60,
                         columnSpacing: 40,
-                        headingTextStyle: const TextStyle(
+                        headingTextStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: Colors.black87,
                         ),
-                        columns: const [
+                        columns: [
                           DataColumn(
                             label: SizedBox(width: 60, child: Text("No")),
                           ),
@@ -327,11 +327,11 @@ class CatatanSikapPage extends StatelessWidget {
                             label: SizedBox(width: 120, child: Text("Aksi")),
                           ),
                         ],
-                        rows: const [],
+                        rows: [],
                       ),
                     ),
 
-                    const SizedBox(height: 35),
+                   SizedBox(height: 35),
 
                     Column(
                       children: [
@@ -340,7 +340,7 @@ class CatatanSikapPage extends StatelessWidget {
                           size: 48,
                           color: Colors.grey[500],
                         ),
-                        const SizedBox(height: 10),
+                       SizedBox(height: 10),
                         Text(
                           "Tidak ada catatan",
                           style: TextStyle(
@@ -349,19 +349,19 @@ class CatatanSikapPage extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(height: 6),
+                       SizedBox(height: 6),
                         Text(
                           "Belum ada catatan sikap yang dilaporkan",
                           style: TextStyle(color: Colors.grey[500]),
                         ),
-                        const SizedBox(height: 20),
+                       SizedBox(height: 20),
                       ],
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 25),
+             SizedBox(height: 25),
             ],
           ),
         ),

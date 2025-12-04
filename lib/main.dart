@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Jurnalku Mobile',
       debugShowCheckedModeBanner: false,
-      home: DashboardPage(),
+      title: 'Jurnalku Mobile',
+      home: LoginPage()
     );
   }
 }
