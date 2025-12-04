@@ -122,9 +122,9 @@ class _TabeloptimasiPageState extends State<TabeloptimasiPage> {
 
            SizedBox(height: 30),
             buildItemList("No", ["1"]),
-            buildItemList("Dilaporkan", ["Baik", "Jahat", "Pengkhianat"]),
-            buildItemList("Catatan", ["Kampung"]),
-            buildItemList("Status", ["Pingsan"]),
+            buildItemList("Dilaporkan", ["Lumayan Baik", "Baik", "Baik Banget"]),
+            buildItemList("Catatan", ["Tolong"]),
+            buildItemList("Status", ["Siswa/i"]),
             buildItemList("Kategori", ["Baik"]),
             buildItemList("Update Terakhir", ["29 November"]),
             buildItemList("Aksi", ["Hapus"]),
