@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:jurnalku_mobile/login_page.dart';
-import 'package:jurnalku_mobile/login_page.dart';
 
 class JelajahiPage extends StatefulWidget {
   JelajahiPage({super.key});
