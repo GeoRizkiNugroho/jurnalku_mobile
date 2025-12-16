@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurnalku_mobile/login_page.dart';
+import 'package:jurnalku_mobile/profile.dart';
 import 'package:jurnalku_mobile/setting_page.dart';
 import 'catatansikap_page.dart';
 import 'dashboard_page.dart';
@@ -32,9 +33,10 @@ class MyApp extends StatelessWidget {
         // MENU UTAMA
         '/settings': (context) => SettingPage(),
         '/catatansikap': (context) => CatatanSikapPage(),
-        '/permintaansaksi': (context) => PermintaanSaksiPage(),
+        '/permintaansaksi': (context) => PermintaanSaksi(),
         '/progress': (context) => ProgressPage(),
         '/jurnalpembiasaan': (context) => JurnalPembiasaanPage(),
+        '/profile': (context) => ProfilePage(),
 
         // TAMBAHAN
         '/jelajahi': (context) => JelajahiPage(),
