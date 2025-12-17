@@ -6,41 +6,46 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.white,
-      leading: Icon(Icons.home_outlined, color: Colors.black),
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 30, top: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                "Malika Maharani Khoerulisa",
-                style: GoogleFonts.inter(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text(
-                "PPLG XII-3",
-                style: GoogleFonts.inter(
-                  fontSize: 11,
-                  color: Colors.blueGrey,
-                ),
-              ),
-            ],
-          ),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.home_outlined, color: Colors.black),
+          onPressed: () {
+            Navigator.pushNamed(context, '/jelajahi');
+          },
         ),
-        Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.grey[300],
-            child: Icon(Icons.person, color: Colors.white),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 30, top: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  "Malika Maharani Khoerulisa",
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  "PPLG XII-3",
+                  style: GoogleFonts.inter(
+                    fontSize: 11,
+                    color: Colors.blueGrey,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
+          Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.grey[300],
+              child: Icon(Icons.person, color: Colors.white),
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -51,7 +56,7 @@ class DashboardPage extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/Dashboard-Web.jpg"), 
+                      image: AssetImage("assets/images/Dashboard-Web.jpg"),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -78,7 +83,7 @@ class DashboardPage extends StatelessWidget {
                             color: Colors.white70,
                           ),
                           textAlign: TextAlign.center,
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -94,15 +99,12 @@ class DashboardPage extends StatelessWidget {
                 ),
                 elevation: 4,
                 child: Container(
-                  height: 250, 
-                  width: double.infinity, 
+                  height: 250,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: LinearGradient(
-                      colors: [
-                        Color(0xFF0066CC),
-                        Color(0xFF004C99),
-                      ],
+                      colors: [Color(0xFF0066CC), Color(0xFF004C99)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -156,7 +158,7 @@ class DashboardPage extends StatelessWidget {
                       Icon(
                         Icons.add_home_work_outlined,
                         size: 50,
-                        color: Color(0xFF0033CC)
+                        color: Color(0xFF0033CC),
                       ),
                       SizedBox(height: 15),
                       Text(
@@ -203,7 +205,7 @@ class DashboardPage extends StatelessWidget {
                       Icon(
                         Icons.fact_check_outlined,
                         size: 50,
-                        color: Color(0xFF0033CC)
+                        color: Color(0xFF0033CC),
                       ),
                       SizedBox(height: 15),
                       Text(
@@ -250,7 +252,7 @@ class DashboardPage extends StatelessWidget {
                       Icon(
                         Icons.school_outlined,
                         size: 50,
-                        color: Color(0xFF0033CC)
+                        color: Color(0xFF0033CC),
                       ),
                       SizedBox(height: 15),
                       Text(
@@ -297,13 +299,16 @@ class DashboardPage extends StatelessWidget {
                     ),
                     elevation: 4,
                     child: Padding(
-                      padding:  EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Column(
                         children: [
                           InkWell(
                             onTap: () {},
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -312,33 +317,41 @@ class DashboardPage extends StatelessWidget {
                                       color: Color(0xFFE8F0FE),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(Icons.person_outline,
-                                        color: Color(0xFF0033CC), size: 28),
-                                  ),
-                                  SizedBox(width: 16),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Profil",
-                                          style: GoogleFonts.inter(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        SizedBox(height: 4),
-                                        Text(
-                                          "Lihat dan kelola profilmu di sini.",
-                                          style: GoogleFonts.inter(
-                                            fontSize: 13,
-                                            color: Colors.grey[600],
-                                          ),
-                                        ),
-                                      ],
+                                    child: Icon(
+                                      Icons.person_outline,
+                                      color: Color(0xFF0033CC),
+                                      size: 28,
                                     ),
                                   ),
-                                  Icon(Icons.chevron_right, color: Colors.grey),
+                                  SizedBox(width: 16),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/profile');
+                                    },
+                                    child: Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Profil",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          SizedBox(height: 4),
+                                          Text(
+                                            "Lihat dan kelola profilmu di sini.",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 13,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -347,7 +360,10 @@ class DashboardPage extends StatelessWidget {
                           InkWell(
                             onTap: () {},
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -356,13 +372,17 @@ class DashboardPage extends StatelessWidget {
                                       color: Color(0xFFE8F0FE),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(Icons.work_outline,
-                                        color: Color(0xFF0033CC), size: 28),
+                                    child: Icon(
+                                      Icons.work_outline,
+                                      color: Color(0xFF0033CC),
+                                      size: 28,
+                                    ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Portofolio",
@@ -391,7 +411,10 @@ class DashboardPage extends StatelessWidget {
                           InkWell(
                             onTap: () {},
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -400,13 +423,17 @@ class DashboardPage extends StatelessWidget {
                                       color: Color(0xFFE8F0FE),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(Icons.star_outline,
-                                        color: Color(0xFF0033CC), size: 28),
+                                    child: Icon(
+                                      Icons.star_outline,
+                                      color: Color(0xFF0033CC),
+                                      size: 28,
+                                    ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Sertifikat",
@@ -443,13 +470,18 @@ class DashboardPage extends StatelessWidget {
                     ),
                     elevation: 4,
                     child: Padding(
-                      padding:  EdgeInsets.symmetric(vertical: 10),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/jurnalpembiasaan');
+                            },
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -458,13 +490,17 @@ class DashboardPage extends StatelessWidget {
                                       color: Color(0xFFE8F0FE),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(Icons.menu_book_outlined,
-                                        color: Color(0xFF0033CC), size: 28),
+                                    child: Icon(
+                                      Icons.menu_book_outlined,
+                                      color: Color(0xFF0033CC),
+                                      size: 28,
+                                    ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Jurnal Pembiasaan",
@@ -491,9 +527,14 @@ class DashboardPage extends StatelessWidget {
                           ),
                           Divider(height: 1),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/permintaansaksi');
+                            },
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -502,13 +543,17 @@ class DashboardPage extends StatelessWidget {
                                       color: Color(0xFFE8F0FE),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(Icons.person_search_outlined,
-                                        color: Color(0xFF0033CC), size: 28),
+                                    child: Icon(
+                                      Icons.person_search_outlined,
+                                      color: Color(0xFF0033CC),
+                                      size: 28,
+                                    ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Permintaan Saksi",
@@ -535,9 +580,14 @@ class DashboardPage extends StatelessWidget {
                           ),
                           Divider(height: 1),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/progress');
+                            },
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -546,13 +596,17 @@ class DashboardPage extends StatelessWidget {
                                       color: Color(0xFFE8F0FE),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(Icons.bar_chart_outlined,
-                                        color: Color(0xFF0033CC), size: 28),
+                                    child: Icon(
+                                      Icons.bar_chart_outlined,
+                                      color: Color(0xFF0033CC),
+                                      size: 28,
+                                    ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Progress",
@@ -579,9 +633,14 @@ class DashboardPage extends StatelessWidget {
                           ),
                           Divider(height: 1),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/catatansikap');
+                            },
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 16,
+                              ),
                               child: Row(
                                 children: [
                                   Container(
@@ -590,13 +649,17 @@ class DashboardPage extends StatelessWidget {
                                       color: Color(0xFFE8F0FE),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(Icons.warning_amber_outlined,
-                                        color: Color(0xFF0033CC), size: 28),
+                                    child: Icon(
+                                      Icons.warning_amber_outlined,
+                                      color: Color(0xFF0033CC),
+                                      size: 28,
+                                    ),
                                   ),
                                   SizedBox(width: 16),
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Catatan Sikap",
@@ -701,7 +764,11 @@ class DashboardPage extends StatelessWidget {
                             color: Colors.greenAccent.withOpacity(0.25),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.check_circle_outline, color: Colors.green, size: 28),
+                          child: Icon(
+                            Icons.check_circle_outline,
+                            color: Colors.green,
+                            size: 28,
+                          ),
                         ),
                       ],
                     ),
@@ -773,7 +840,11 @@ class DashboardPage extends StatelessWidget {
                             color: Colors.orangeAccent.withOpacity(0.25),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.access_time, color: Colors.orange, size: 28),
+                          child: Icon(
+                            Icons.access_time,
+                            color: Colors.orange,
+                            size: 28,
+                          ),
                         ),
                       ],
                     ),
@@ -845,7 +916,11 @@ class DashboardPage extends StatelessWidget {
                             color: Colors.lightBlueAccent.withOpacity(0.25),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.calendar_month_outlined, color: Colors.blue, size: 28),
+                          child: Icon(
+                            Icons.calendar_month_outlined,
+                            color: Colors.blue,
+                            size: 28,
+                          ),
                         ),
                       ],
                     ),
@@ -904,7 +979,7 @@ class DashboardPage extends StatelessWidget {
                                   "Revisi",
                                   style: GoogleFonts.inter(
                                     fontSize: 14,
-                                    color:  Color.fromARGB(255, 219, 33, 243),
+                                    color: Color.fromARGB(255, 219, 33, 243),
                                   ),
                                 ),
                               ],
@@ -914,10 +989,19 @@ class DashboardPage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 248, 191, 255).withOpacity(0.25),
+                            color: Color.fromARGB(
+                              255,
+                              248,
+                              191,
+                              255,
+                            ).withOpacity(0.25),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.cached_outlined, color: Color.fromARGB(255, 219, 33, 243), size: 28),
+                          child: Icon(
+                            Icons.cached_outlined,
+                            color: Color.fromARGB(255, 219, 33, 243),
+                            size: 28,
+                          ),
                         ),
                       ],
                     ),
@@ -927,7 +1011,9 @@ class DashboardPage extends StatelessWidget {
                     padding: EdgeInsets.all(0),
                     child: Card(
                       color: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
                       elevation: 3,
                       child: Padding(
                         padding: EdgeInsets.all(20),
@@ -946,58 +1032,80 @@ class DashboardPage extends StatelessWidget {
                             Row(
                               children: [
                                 CircleAvatar(
-                                  radius: 6, 
-                                  backgroundColor: Color(0xFF3F51F5)
-                                  ),
+                                  radius: 6,
+                                  backgroundColor: Color(0xFF3F51F5),
+                                ),
                                 SizedBox(width: 12),
                                 Expanded(
-                                  child: Text("Selesai", style: GoogleFonts.inter(fontSize: 15)),
+                                  child: Text(
+                                    "Selesai",
+                                    style: GoogleFonts.inter(fontSize: 15),
+                                  ),
                                 ),
-                                Text("3", style: GoogleFonts.inter(fontSize: 15)),
+                                Text(
+                                  "3",
+                                  style: GoogleFonts.inter(fontSize: 15),
+                                ),
                               ],
                             ),
                             SizedBox(height: 12),
                             Row(
                               children: [
                                 CircleAvatar(
-                                  radius: 6, 
-                                  backgroundColor: Color(0xFF7B83EB)
-                                  ),
+                                  radius: 6,
+                                  backgroundColor: Color(0xFF7B83EB),
+                                ),
                                 SizedBox(width: 12),
                                 Expanded(
-                                  child: Text("Pending", style: GoogleFonts.inter(fontSize: 15)),
+                                  child: Text(
+                                    "Pending",
+                                    style: GoogleFonts.inter(fontSize: 15),
+                                  ),
                                 ),
-                                Text("0", style: GoogleFonts.inter(fontSize: 15)),
+                                Text(
+                                  "0",
+                                  style: GoogleFonts.inter(fontSize: 15),
+                                ),
                               ],
                             ),
                             SizedBox(height: 12),
                             Row(
                               children: [
                                 CircleAvatar(
-                                  radius: 6, 
-                                  backgroundColor: Color(0xFF8BD0E0)
-                                  ),
+                                  radius: 6,
+                                  backgroundColor: Color(0xFF8BD0E0),
+                                ),
                                 SizedBox(width: 12),
                                 Expanded(
-                                  child: Text("Belum", 
-                                  style: GoogleFonts.inter(fontSize: 15)),
+                                  child: Text(
+                                    "Belum",
+                                    style: GoogleFonts.inter(fontSize: 15),
+                                  ),
                                 ),
-                                Text("0", style: GoogleFonts.inter(fontSize: 15)),
+                                Text(
+                                  "0",
+                                  style: GoogleFonts.inter(fontSize: 15),
+                                ),
                               ],
                             ),
                             SizedBox(height: 12),
                             Row(
                               children: [
                                 CircleAvatar(
-                                  radius: 6, 
-                                  backgroundColor: Color(0xFF0097B2)
-                                  ),
+                                  radius: 6,
+                                  backgroundColor: Color(0xFF0097B2),
+                                ),
                                 SizedBox(width: 12),
                                 Expanded(
-                                  child: Text("Hari Ini", 
-                                  style: GoogleFonts.inter(fontSize: 15)),
+                                  child: Text(
+                                    "Hari Ini",
+                                    style: GoogleFonts.inter(fontSize: 15),
+                                  ),
                                 ),
-                                Text("0", style: GoogleFonts.inter(fontSize: 15)),
+                                Text(
+                                  "0",
+                                  style: GoogleFonts.inter(fontSize: 15),
+                                ),
                               ],
                             ),
                           ],
@@ -1010,27 +1118,38 @@ class DashboardPage extends StatelessWidget {
                     padding: EdgeInsets.all(0),
                     child: Card(
                       color: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
                       elevation: 3,
                       child: Padding(
                         padding: EdgeInsets.all(20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "Lihat Progress Kamu",
-                                  style: GoogleFonts.inter(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/progress');
+                              },
+                              borderRadius: BorderRadius.circular(6),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Lihat Progress Kamu",
+                                    style: GoogleFonts.inter(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.blue.shade800,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Icon(
+                                    Icons.arrow_right_alt_rounded,
+                                    size: 22,
                                     color: Colors.blue.shade800,
                                   ),
-                                ),
-                                SizedBox(width: 6),
-                                Icon(Icons.arrow_right_alt_rounded,
-                                    size: 22, color: Colors.blue.shade800),
-                              ],
+                                ],
+                              ),
                             ),
                             SizedBox(height: 25),
                             Row(
@@ -1039,11 +1158,16 @@ class DashboardPage extends StatelessWidget {
                                   child: Text(
                                     "Installasi Postman",
                                     style: GoogleFonts.inter(
-                                        fontSize: 15, fontWeight: FontWeight.w600),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 14,
+                                    vertical: 6,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Color(0xFFD5F8D9),
                                     borderRadius: BorderRadius.circular(20),
@@ -1056,7 +1180,7 @@ class DashboardPage extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -1068,11 +1192,16 @@ class DashboardPage extends StatelessWidget {
                                   child: Text(
                                     "AJAX",
                                     style: GoogleFonts.inter(
-                                        fontSize: 15, fontWeight: FontWeight.w600),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 14,
+                                    vertical: 6,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Color(0xFFD5F8D9),
                                     borderRadius: BorderRadius.circular(20),
@@ -1085,30 +1214,39 @@ class DashboardPage extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             SizedBox(height: 10),
                             Divider(height: 1),
                             SizedBox(height: 25),
                             Center(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    "Lihat semua Kompetensi",
-                                    style: GoogleFonts.inter(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/progress');
+                                },
+                                borderRadius: BorderRadius.circular(6),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "Lihat semua Kompetensi",
+                                      style: GoogleFonts.inter(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.blue.shade800,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Icon(
+                                      Icons.arrow_right_alt_rounded,
+                                      size: 22,
                                       color: Colors.blue.shade800,
                                     ),
-                                  ),
-                                  SizedBox(width: 6),
-                                  Icon(Icons.arrow_right_alt_rounded,
-                                      size: 22, color: Colors.blue.shade800),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),

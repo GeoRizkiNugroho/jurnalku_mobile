@@ -8,12 +8,15 @@ class ProgressPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(55),
+        preferredSize: const Size.fromHeight(55),
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
+          decoration: const BoxDecoration(
             boxShadow: [
-              BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 6,
+                offset: Offset(0, 3),
+              ),
             ],
           ),
           child: AppBar(
@@ -23,9 +26,10 @@ class ProgressPage extends StatelessWidget {
             title: Row(
               children: [
                 Icon(Icons.home_outlined, color: Colors.grey[700]),
-                SizedBox(width: 8),
-                Icon(Icons.arrow_forward_ios, color: Colors.grey[700], size: 10),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
+                Icon(Icons.arrow_forward_ios,
+                    color: Colors.grey[700], size: 10),
+                const SizedBox(width: 8),
                 Text(
                   "Progress",
                   style: TextStyle(
@@ -34,77 +38,86 @@ class ProgressPage extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
+                  children: const [
                     Text(
                       'Name',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     ),
-                    Text('PPLG XII-3', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                    Text(
+                      'PPLG XII-3',
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
                   ],
                 ),
-                SizedBox(width: 12),
-                CircleAvatar(
+                const SizedBox(width: 12),
+                const CircleAvatar(
                   radius: 18,
-                  backgroundImage: AssetImage('assets/images/profile.png'),
+                  backgroundImage:
+                      AssetImage('assets/images/profile.png'),
                 ),
               ],
             ),
           ),
         ),
       ),
+
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Progress Belajar',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Pantau perkembangan kompetensi dan materi pembelajaran Anda',
-                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.blue[50],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Thursday, 20 November',
-                          style: TextStyle(fontSize: 12, color: Colors.blue[700], fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          '2025',
-                          style: TextStyle(fontSize: 12, color: Colors.blue[700]),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 24),
 
+              /// TITLE
+              const Text(
+                'Progress Belajar',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Pantau perkembangan kompetensi dan materi pembelajaran Anda',
+                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+              ),
+
+              const SizedBox(height: 10),
+
+              /// DATE CARD
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Thursday, 20 November',
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.blue),
+                    ),
+                    Text(
+                      '2025',
+                      style:
+                          TextStyle(fontSize: 12, color: Colors.blue),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              /// GRID STATS
               GridView.count(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
@@ -127,7 +140,7 @@ class ProgressPage extends StatelessWidget {
                     bgIcon: Colors.green.withOpacity(0.15),
                   ),
                   _buildCard(
-                    title: "Status ",
+                    title: "Status",
                     value: "4",
                     indicatorLabel: "Perlu Validasi",
                     indicatorColor: Colors.orange,
@@ -138,12 +151,20 @@ class ProgressPage extends StatelessWidget {
                     title: "Total Halaman",
                     value: "1",
                     indicatorLabel: "Navigasi Tersedia",
-                    indicatorColor: Color.fromARGB(255, 197, 33, 197),
+                    indicatorColor: Colors.purple,
                     icon: Icons.task,
-                    bgIcon: Colors.red.withOpacity(0.15),
+                    bgIcon: Colors.purple.withOpacity(0.15),
                   ),
                 ],
               ),
+
+              const SizedBox(height: 24),
+
+              /// PROGRESS TABLE SECTIONS
+              _buildProgressSection("Project Work"),
+              _buildProgressSection("Mobile Apps"),
+              _buildProgressSection("UKK (Uji Kompetensi Keahlian)"),
+              _buildProgressSection("GIM"),
             ],
           ),
         ),
@@ -151,6 +172,7 @@ class ProgressPage extends StatelessWidget {
     );
   }
 
+  /// ================= CARD =================
   Widget _buildCard({
     required String title,
     required String value,
@@ -160,7 +182,7 @@ class ProgressPage extends StatelessWidget {
     required Color bgIcon,
   }) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
@@ -172,35 +194,101 @@ class ProgressPage extends StatelessWidget {
             right: 0,
             top: 35,
             child: Container(
-              padding: EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: bgIcon,
-                shape: BoxShape.circle,
-              ),
+              padding: const EdgeInsets.all(12),
+              decoration:
+                  BoxDecoration(color: bgIcon, shape: BoxShape.circle),
               child: Icon(icon, size: 26, color: indicatorColor),
             ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: TextStyle(fontSize: 14, color: Colors.grey[700])),
-              SizedBox(height: 8),
-              Text(value, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-              SizedBox(height: 16),
+              Text(title,
+                  style:
+                      TextStyle(fontSize: 14, color: Colors.grey[700])),
+              const SizedBox(height: 8),
+              Text(
+                value,
+                style: const TextStyle(
+                    fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
               Row(
                 children: [
-                  Icon(Icons.info_outline, size: 16, color: indicatorColor),
-                  SizedBox(width: 6),
+                  Icon(Icons.info_outline,
+                      size: 16, color: indicatorColor),
+                  const SizedBox(width: 6),
                   Text(
                     indicatorLabel,
-                    style: TextStyle(fontSize: 12, color: indicatorColor),
+                    style: TextStyle(
+                        fontSize: 12, color: indicatorColor),
                   ),
                 ],
               ),
             ],
-
           ),
         ],
+      ),
+    );
+  }
+
+  /// ================= TABLE SECTION =================
+  Widget _buildProgressSection(String title) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Colors.grey.shade200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 4),
+          Text(
+            "Kompetensi dan materi pembelajaran",
+            style:
+                TextStyle(fontSize: 13, color: Colors.grey.shade600),
+          ),
+          const SizedBox(height: 16),
+          const Row(
+            children: [
+              _TableHeader("KOMPETENSI", flex: 2),
+              _TableHeader("GURU"),
+              _TableHeader("TANGGAL"),
+              _TableHeader("STATUS"),
+              _TableHeader("CATATAN GURU", flex: 2),
+              _TableHeader("CATATAN SISWA", flex: 2),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// ================= TABLE HEADER =================
+class _TableHeader extends StatelessWidget {
+  final String text;
+  final int flex;
+
+  const _TableHeader(this.text, {this.flex = 1});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: flex,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: Colors.grey.shade600,
+        ),
       ),
     );
   }
