@@ -42,9 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF0D47A1),
-                    ),
+                    decoration: const BoxDecoration(color: Color(0xFF0D47A1)),
                     child: Stack(
                       children: [
                         // =============== BACKGROUND IMAGE RIGHT ===============
@@ -75,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.black.withOpacity(0.15),
                                     blurRadius: 30,
                                     offset: const Offset(0, 10),
-                                  )
+                                  ),
                                 ],
                               ),
                               child: Column(
@@ -112,21 +110,25 @@ class _LoginPageState extends State<LoginPage> {
                                   TextField(
                                     decoration: InputDecoration(
                                       hintText: "Masukkan username atau NIS",
-                                      hintStyle:
-                                          TextStyle(color: Color(0xFF9E9E9E)),
+                                      hintStyle: TextStyle(
+                                        color: Color(0xFF9E9E9E),
+                                      ),
                                       filled: true,
                                       fillColor: Color(0xFFF5F5F5),
                                       border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Color(0xFFE0E0E0)),
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE0E0E0),
+                                        ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Color(0xFFE0E0E0)),
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE0E0E0),
+                                        ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Color(0xFFE0E0E0)),
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE0E0E0),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -145,21 +147,25 @@ class _LoginPageState extends State<LoginPage> {
                                     obscureText: !_isPasswordVisible,
                                     decoration: InputDecoration(
                                       hintText: "Masukkan password",
-                                      hintStyle:
-                                          TextStyle(color: Color(0xFF9E9E9E)),
+                                      hintStyle: TextStyle(
+                                        color: Color(0xFF9E9E9E),
+                                      ),
                                       filled: true,
                                       fillColor: Color(0xFFF5F5F5),
                                       border: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Color(0xFFE0E0E0)),
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE0E0E0),
+                                        ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Color(0xFFE0E0E0)),
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE0E0E0),
+                                        ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Color(0xFFE0E0E0)),
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE0E0E0),
+                                        ),
                                       ),
                                       suffixIcon: IconButton(
                                         icon: Icon(
@@ -185,22 +191,26 @@ class _LoginPageState extends State<LoginPage> {
                                     width: double.infinity,
                                     height: 48,
                                     child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/dashboard');
+                                      },
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color(0xFF0D47A1),
-                                        shape: RoundedRectangleBorder(
+                                        backgroundColor: const Color(0xFF0D47A1),
+                                        shape: const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.zero,
                                         ),
                                       ),
-                                      onPressed: () {},
                                       child: const Text(
-                                        "Masuk",
+                                        'Masuk',
                                         style: TextStyle(
                                           fontSize: 16,
-                                          color: Colors.white, 
-                                          ),
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                   ),
+
 
                                   const SizedBox(height: 25),
 
@@ -212,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                                         fontSize: 13,
                                       ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -236,8 +246,7 @@ class _LoginPageState extends State<LoginPage> {
             bottom: 25,
             right: 25,
             child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
                 color: const Color(0xFF003C8F),
                 borderRadius: BorderRadius.circular(50),
@@ -246,23 +255,29 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.black.withOpacity(0.2),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
-                  )
-                ],
-              ),
-              child: Row(
-                children: const [
-                  Icon(Icons.search, color: Colors.white, size: 20),
-                  SizedBox(width: 10),
-                  Text(
-                    "Jelajahi siswa",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
                   ),
                 ],
               ),
+              child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/jelajahi');
+                      },
+                      borderRadius: BorderRadius.circular(10), // samakan dengan Container
+                      child: Row(
+                        children: const [
+                          Icon(Icons.search, color: Colors.white, size: 20),
+                          SizedBox(width: 10),
+                          Text(
+                            "Jelajahi siswa",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
             ),
           ),
         ],
@@ -373,7 +388,7 @@ class BottomSection extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 14),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -423,7 +438,7 @@ class BottomSection extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,370 +1,228 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class CatatanSikapPage extends StatelessWidget {
-  const CatatanSikapPage({super.key});
+class CatatanSikapPage extends StatefulWidget {
+ CatatanSikapPage({super.key});
+
+  @override
+  State<CatatanSikapPage> createState() => _CatatanSikapPageState();
+}
+class _CatatanSikapPageState extends State<CatatanSikapPage> {
+  String? nilaiTerpilih;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        automaticallyImplyLeading: false,
-        titleSpacing: 12,
-        title: Row(
-          children: [
-            Icon(Icons.home, color: Colors.grey[700], size: 20),
-            const SizedBox(width: 8),
-            Icon(Icons.arrow_forward_ios, color: Colors.grey[500], size: 10),
-            const SizedBox(width: 8),
-            Text(
-              "Catatan Sikap",
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
+        leading: Icon(Icons.home_outlined, color: Colors.black),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 12.0),
+            padding: EdgeInsets.only(right: 10),
             child: Row(
               children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Nama Siswa",
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontSize: 14,
+                      "Malika Maharani Khoerulisa",
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
                         fontWeight: FontWeight.w600,
+                        color: Colors.black,
                       ),
                     ),
                     Text(
-                      "Rombel",
-                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                      "PPLG XII-3",
+                      style: GoogleFonts.inter(
+                        fontSize: 11,
+                        color: Colors.blueGrey,
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(width: 8),
-                CircleAvatar(
-                  radius: 15,
-                  backgroundImage: AssetImage("assets/images/profile.png"),
-                ),
-                const SizedBox(width: 4),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.grey[700],
-                  size: 20,
+               SizedBox(width: 10),
+               CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.grey,
+                  child: Icon(Icons.person, color: Colors.white),
                 ),
               ],
             ),
           ),
         ],
       ),
-
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Catatan Sikap Saya",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[800],
-                ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            Text(
+              "Catatan Sikap Saya",
+              style: GoogleFonts.inter(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(height: 6),
-              Text(
-                "Lihat catatan sikap dan perilaku yang telah dilaporkan",
-                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+              textAlign: TextAlign.left,
+            ),
+           SizedBox(height: 5),
+            Text(
+              "Lihat catatan sikap dan perilaku yang telah dilaporkan",
+              style: GoogleFonts.inter(fontSize: 15, color: Colors.black87),
+              textAlign: TextAlign.left,
+            ),
+           SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: Color(0xFFFFF7ED),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Color(0xFFFCD34D)),
               ),
-              const SizedBox(height: 14),
-
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: Colors.amber[50],
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: const Color.fromARGB(255, 255, 213, 87),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 Icon(
+                    Icons.warning_amber_rounded,
+                    color: Color(0xFFB45309),
+                    size: 28,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 6,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.warning_amber_rounded,
-                      color: Colors.orange,
-                      size: 22,
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        "Perhatian\nJika Anda merasa ada catatan yang tidak sesuai atau keliru, silakan hubungi guru jurusan untuk mengajukan klarifikasi.",
-                        style: TextStyle(color: Colors.grey[800], fontSize: 13),
+                 SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      "Jika Anda merasa ada catatan yang tidak sesuai atau keliru, silakan hubungi guru jurusan.",
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        color: Color(0xFFB45309),
+                        fontWeight: FontWeight.w600,
                       ),
+                      textAlign: TextAlign.left,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+            ),
+           SizedBox(height: 25),
+            kotakData(
+              "Total Catatan",
+              "0",
+              Icons.insert_drive_file_outlined,
+              Colors.blue,
+            ),
+           SizedBox(height: 20),
+            kotakData("Dalam Perbaikan", "0", Icons.bolt, Colors.amber),
+           SizedBox(height: 20),
+            kotakData(
+              "Sudah Berubah",
+              "0",
+              Icons.insert_drive_file_outlined,
+              Colors.green,
+            ),
 
-              const SizedBox(height: 18),
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 14,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 8,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Total Catatan",
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "0",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.description, color: Colors.blueAccent, size: 22),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 14,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 8,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Dalam Perbaikan",
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "0",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.bolt, color: Colors.yellow[800], size: 22),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16,
-                  horizontal: 14,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 8,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Sudah Berubah",
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey[600],
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "0",
-                            style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.check_circle, color: Colors.green, size: 22),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: DataTable(
-                        headingRowHeight: 50,
-                        dataRowHeight: 60,
-                        columnSpacing: 40,
-                        headingTextStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Colors.black87,
-                        ),
-                        columns: const [
-                          DataColumn(
-                            label: SizedBox(width: 60, child: Text("No")),
-                          ),
-                          DataColumn(
-                            label: SizedBox(
-                              width: 200,
-                              child: Text("Kategori"),
-                            ),
-                          ),
-                          DataColumn(
-                            label: SizedBox(width: 350, child: Text("Catatan")),
-                          ),
-                          DataColumn(
-                            label: SizedBox(width: 180, child: Text("Status")),
-                          ),
-                          DataColumn(
-                            label: SizedBox(
-                              width: 200,
-                              child: Text("Dilaporkan"),
-                            ),
-                          ),
-                          DataColumn(
-                            label: SizedBox(
-                              width: 220,
-                              child: Text("Update Terakhir"),
-                            ),
-                          ),
-                          DataColumn(
-                            label: SizedBox(width: 120, child: Text("Aksi")),
-                          ),
-                        ],
-                        rows: const [],
-                      ),
-                    ),
-
-                    const SizedBox(height: 35),
-
-                    Column(
-                      children: [
-                        Icon(
-                          Icons.check_circle_outline,
-                          size: 48,
-                          color: Colors.grey[500],
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "Tidak ada catatan",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey[700],
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          "Belum ada catatan sikap yang dilaporkan",
-                          style: TextStyle(color: Colors.grey[500]),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 25),
-            ],
-          ),
+           SizedBox(height: 30),
+            buildItemList("No", ["1"]),
+            buildItemList("Dilaporkan", ["Lumayan Baik", "Baik", "Baik Banget"]),
+            buildItemList("Catatan", ["Tolong"]),
+            buildItemList("Status", ["Siswa/i"]),
+            buildItemList("Kategori", ["Baik"]),
+            buildItemList("Update Terakhir", ["29 November"]),
+            buildItemList("Aksi", ["Hapus"]),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget kotakData(String judul, String angka, IconData icon, Color warna) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.grey, width: 0.5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  judul,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+               SizedBox(height: 6),
+                Text(
+                  angka,
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: warna.withOpacity(0.15),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, size: 30, color: warna),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildItemList(String title, List<String> items) {
+    return Card(
+      elevation: 2,
+      margin: EdgeInsets.only(bottom: 12),
+      child: ExpansionTile(
+        tilePadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          textAlign: TextAlign.left,
+        ),
+
+        childrenPadding: EdgeInsets.all(16),
+
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: List.generate(items.length, (i) {
+              return Padding(
+                padding: EdgeInsets.only(bottom: 4),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "${i + 1}. ${items[i]}",
+                    style: TextStyle(fontSize: 14),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+              );
+            }),
+          ),
+        ],
       ),
     );
   }
