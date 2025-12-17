@@ -4,14 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 class PermintaanSaksi extends StatelessWidget {
   final List<Map<String, String>> data = [
     {
-      "nama": "Aqila Hanin Nailah",
-      "tanggal": "20 Nov 2025",
+      "nama": "Geo Rizki Nugroho",
+      "tanggal": "18 Desember 2025",
       "catatan": "Meminta Anda menjadi saksi dalam kasus tertentu.",
       "status": "Pending",
     },
     {
-      "nama": "Malika Maharani Putri Soekanto",
-      "tanggal": "18 Nov 2025",
+      "nama": "Malika Maharani Khoerulisa",
+      "tanggal": "1 Februari 2025",
       "catatan": "Meminta saksi pada kasus pelanggaran ringan.",
       "status": "Pending",
     },
@@ -30,7 +30,7 @@ class PermintaanSaksi extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "Ayu Sekar Azzkya",
+                  "Negari Gendisayu Yudhani",
                   style: GoogleFonts.inter(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
