@@ -258,20 +258,26 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              child: Row(
-                children: const [
-                  Icon(Icons.search, color: Colors.white, size: 20),
-                  SizedBox(width: 10),
-                  Text(
-                    "Jelajahi siswa",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
+              child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/jelajahi');
+                      },
+                      borderRadius: BorderRadius.circular(10), // samakan dengan Container
+                      child: Row(
+                        children: const [
+                          Icon(Icons.search, color: Colors.white, size: 20),
+                          SizedBox(width: 10),
+                          Text(
+                            "Jelajahi siswa",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
             ),
           ),
         ],
