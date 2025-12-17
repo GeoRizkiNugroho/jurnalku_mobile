@@ -22,7 +22,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: const Icon(Icons.home_outlined, color: Colors.black),
         onPressed: () {
-          Navigator.pushReplacementNamed(context, '/jelajahi');
+          Navigator.pushReplacementNamed(context, '/dashboard');
         },
       ),
       actions: [

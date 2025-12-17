@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurnalku_mobile/widgets/main_app_bar.dart';
 
 class ProgressPage extends StatelessWidget {
   const ProgressPage({super.key});
@@ -7,63 +8,10 @@ class ProgressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(55),
-        child: Container(
-          decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 6,
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
-          child: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-            title: Row(
-              children: [
-                Icon(Icons.home_outlined, color: Colors.grey[700]),
-                const SizedBox(width: 8),
-                Icon(Icons.arrow_forward_ios,
-                    color: Colors.grey[700], size: 10),
-                const SizedBox(width: 8),
-                Text(
-                  "Progress",
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    Text(
-                      'Name',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      'PPLG XII-3',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 12),
-                const CircleAvatar(
-                  radius: 18,
-                  backgroundImage:
-                      AssetImage('assets/images/profile.png'),
-                ),
-              ],
-            ),
-          ),
+      appBar: MainAppBar(
+          nama: "Nama Siswa",
+          rombel: "PPLG XII-3",
         ),
-      ),
 
       body: SingleChildScrollView(
         child: Padding(

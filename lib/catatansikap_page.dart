@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jurnalku_mobile/widgets/main_app_bar.dart';
 
 class CatatanSikapPage extends StatefulWidget {
  CatatanSikapPage({super.key});
@@ -13,47 +14,10 @@ class _CatatanSikapPageState extends State<CatatanSikapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: Icon(Icons.home_outlined, color: Colors.black),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Malika Maharani Khoerulisa",
-                      style: GoogleFonts.inter(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      "PPLG XII-3",
-                      style: GoogleFonts.inter(
-                        fontSize: 11,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                  ],
-                ),
-               SizedBox(width: 10),
-               CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.grey,
-                  child: Icon(Icons.person, color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      appBar: MainAppBar(
+          nama: "Nama Siswa",
+          rombel: "PPLG XII-3",
+        ),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: ListView(

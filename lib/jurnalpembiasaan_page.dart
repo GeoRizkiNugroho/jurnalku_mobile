@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurnalku_mobile/widgets/main_app_bar.dart';
 
 class JurnalPembiasaanPage extends StatelessWidget {
   const JurnalPembiasaanPage({super.key});
@@ -7,58 +8,10 @@ class JurnalPembiasaanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(55),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
-            ],
-          ),
-          child: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-            title: Row(
-              children: [
-                Icon(Icons.home_outlined, color: Colors.grey[700]),
-                SizedBox(width: 8),
-                Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 10),
-                SizedBox(width: 8),
-                Text(
-                  "Jurnal Pembiasaan",
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Geo Rizki Nugroho',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black),
-                    ),
-                    Text(
-                      'PPLG XII-3',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 12),
-                CircleAvatar(
-                  radius: 18,
-                  backgroundImage: AssetImage('assets/images/profile.png'),
-                ),
-              ],
-            ),
-          ),
+      appBar: MainAppBar(
+          nama: "Nama Siswa",
+          rombel: "PPLG XII-3",
         ),
-      ),
-
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20),

@@ -290,7 +290,7 @@ class DashboardPage extends StatelessWidget {
                                   SizedBox(width: 16),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pushNamed(context, '/profile');
+                                      Navigator.pushNamed(context, '/profile', arguments: 0);
                                     },
                                     child: Expanded(
                                       child: Column(
@@ -322,7 +322,9 @@ class DashboardPage extends StatelessWidget {
                           ),
                           Divider(height: 1),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/profile', arguments: 1);
+                            },
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 20,
@@ -373,7 +375,9 @@ class DashboardPage extends StatelessWidget {
                           ),
                           Divider(height: 1),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, '/profile', arguments: 2);
+                            },
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 20,
