@@ -7,6 +7,7 @@ class ProgressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55),
         child: Container(
@@ -25,15 +26,15 @@ class ProgressPage extends StatelessWidget {
             automaticallyImplyLeading: false,
             title: Row(
               children: [
-                Icon(Icons.home_outlined, color: Colors.grey[700]),
+                Icon(Icons.home_outlined, color: Colors.grey.shade700),
                 const SizedBox(width: 8),
                 Icon(Icons.arrow_forward_ios,
-                    color: Colors.grey[700], size: 10),
+                    color: Colors.grey.shade700, size: 10),
                 const SizedBox(width: 8),
                 Text(
                   "Progress",
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.grey.shade700,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
@@ -56,8 +57,7 @@ class ProgressPage extends StatelessWidget {
                 const SizedBox(width: 12),
                 const CircleAvatar(
                   radius: 18,
-                  backgroundImage:
-                      AssetImage('assets/images/profile.png'),
+                  child: Icon(Icons.person),
                 ),
               ],
             ),
@@ -72,7 +72,6 @@ class ProgressPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              /// TITLE
               const Text(
                 'Progress Belajar',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -80,22 +79,21 @@ class ProgressPage extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 'Pantau perkembangan kompetensi dan materi pembelajaran Anda',
-                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
               ),
 
               const SizedBox(height: 10),
 
-              /// DATE CARD
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
-                  color: Colors.blue[50],
+                  color: Colors.blue.shade50,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Thursday, 20 November',
                       style: TextStyle(
@@ -105,8 +103,7 @@ class ProgressPage extends StatelessWidget {
                     ),
                     Text(
                       '2025',
-                      style:
-                          TextStyle(fontSize: 12, color: Colors.blue),
+                      style: TextStyle(fontSize: 12, color: Colors.blue),
                     ),
                   ],
                 ),
@@ -114,7 +111,6 @@ class ProgressPage extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              /// GRID STATS
               GridView.count(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -160,7 +156,6 @@ class ProgressPage extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              /// PROGRESS TABLE SECTIONS
               _buildProgressSection("Project Work"),
               _buildProgressSection("Mobile Apps"),
               _buildProgressSection("UKK (Uji Kompetensi Keahlian)"),
@@ -172,8 +167,7 @@ class ProgressPage extends StatelessWidget {
     );
   }
 
-  /// ================= CARD =================
-  Widget _buildCard({
+  static Widget _buildCard({
     required String title,
     required String value,
     required String indicatorLabel,
@@ -205,7 +199,7 @@ class ProgressPage extends StatelessWidget {
             children: [
               Text(title,
                   style:
-                      TextStyle(fontSize: 14, color: Colors.grey[700])),
+                      TextStyle(fontSize: 14, color: Colors.grey.shade700)),
               const SizedBox(height: 8),
               Text(
                 value,
@@ -255,15 +249,26 @@ class ProgressPage extends StatelessWidget {
                 TextStyle(fontSize: 13, color: Colors.grey.shade600),
           ),
           const SizedBox(height: 16),
-          const Row(
-            children: [
-              _TableHeader("KOMPETENSI", flex: 2),
-              _TableHeader("GURU"),
-              _TableHeader("TANGGAL"),
-              _TableHeader("STATUS"),
-              _TableHeader("CATATAN GURU", flex: 2),
-              _TableHeader("CATATAN SISWA", flex: 2),
-            ],
+
+          /// 🔥 OPTIMASI TABEL (TETAP MUNCUL)
+          SizedBox(
+            height: 20,
+            child: ListView.builder(
+              itemCount: 1,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return const Row(
+                  children: [
+                    _TableHeader("KOMPETENSI", flex: 2),
+                    _TableHeader("GURU"),
+                    _TableHeader("TANGGAL"),
+                    _TableHeader("STATUS"),
+                    _TableHeader("CATATAN GURU", flex: 2),
+                    _TableHeader("CATATAN SISWA", flex: 2),
+                  ],
+                );
+              },
+            ),
           ),
         ],
       ),
