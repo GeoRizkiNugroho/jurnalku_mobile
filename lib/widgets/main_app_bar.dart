@@ -12,13 +12,18 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 1);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
+      surfaceTintColor: Colors.white, // 🔥 penting (Material 3)
+      bottom: const PreferredSize(
+        preferredSize: Size.fromHeight(1),
+        child: Divider(height: 1, thickness: 1, color: Colors.black12),
+      ),
       leading: IconButton(
         icon: const Icon(Icons.home_outlined, color: Colors.black),
         onPressed: () {
@@ -36,13 +41,14 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
+                  color: Colors.black,
                 ),
               ),
               Text(
                 rombel,
                 style: GoogleFonts.inter(
                   fontSize: 11,
-                  color: Colors.blueGrey,
+                  color: Colors.black54,
                 ),
               ),
             ],
@@ -57,6 +63,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
+            color: Colors.white,
             onSelected: (route) {
               Navigator.pushNamed(context, route);
             },
@@ -76,10 +83,15 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
               _item(Icons.settings_outlined, "Pengaturan Akun", "/settings"),
               _item(Icons.logout, "Log Out", "/"),
             ],
-            child: CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.grey[300],
-              child: const Icon(Icons.person, color: Colors.white),
+            child: Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.black12),
+              ),
+              child: const Icon(Icons.person, color: Colors.black54),
             ),
           ),
         ),
@@ -88,16 +100,22 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   PopupMenuItem<String> _item(
-      IconData icon, String text, String route) {
+    IconData icon,
+    String text,
+    String route,
+  ) {
     return PopupMenuItem<String>(
       value: route,
       child: Row(
         children: [
-          Icon(icon, size: 20, color: Colors.blueGrey),
+          Icon(icon, size: 20, color: Colors.black54),
           const SizedBox(width: 12),
           Text(
             text,
-            style: GoogleFonts.inter(fontSize: 13),
+            style: GoogleFonts.inter(
+              fontSize: 13,
+              color: Colors.black,
+            ),
           ),
         ],
       ),

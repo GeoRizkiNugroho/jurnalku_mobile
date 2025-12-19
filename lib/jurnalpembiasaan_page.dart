@@ -8,268 +8,260 @@ class JurnalPembiasaanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: MainAppBar(
-          nama: "Nama Siswa",
-          rombel: "PPLG XII-3",
-        ),
+      appBar: const MainAppBar(
+        nama: "Nama Siswa",
+        rombel: "PPLG XII-3",
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.blue,
+        onPressed: () {},
+        icon: const Icon(Icons.add, color: Colors.white),
+        label: const Text("Tambah", style: TextStyle(color: Colors.white)),
+      ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Jurnal Pembiasaan",
-                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-              SizedBox(height: 4),
-              Text("DESEMBER - 2025",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
-              SizedBox(height: 20),
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
 
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                ),
-                onPressed: () {},
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.arrow_back, color: Colors.white),
-                    SizedBox(width: 8),
-                    Text("Bulan Sebelumnya", style: TextStyle(color: Colors.white)),
-                  ],
-                ),
+            // ===== HEADER =====
+            const Text(
+              "Jurnal Pembiasaan",
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              "Desember 2025",
+              style: TextStyle(fontSize: 18, color: Colors.black54),
+            ),
+
+            const SizedBox(height: 28),
+
+            // ===== A. PEMBIASAAN HARIAN =====
+            const Text(
+              "A. Pembiasaan Harian",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 14),
+
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 31,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 1.6,
               ),
-
-              SizedBox(height: 30),
-              Text("A. Pembiasaan harian",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
-              SizedBox(height: 18),
-
-              Row(
-                children: [
-                  CircleAvatar(radius: 6, backgroundColor: Colors.green),
-                  SizedBox(width: 5),
-                  Text("Sudah diisi"),
-                  SizedBox(width: 15),
-                  CircleAvatar(radius: 6, backgroundColor: Colors.grey),
-                  SizedBox(width: 5),
-                  Text("Belum diisi"),
-                  SizedBox(width: 15),
-                  CircleAvatar(radius: 6, backgroundColor: Colors.red),
-                  SizedBox(width: 5),
-                  Text("Tidak diisi"),
-                ],
-              ),
-
-              SizedBox(height: 20),
-
-              GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 31,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 1.75,
-                ),
-                itemBuilder: (context, index) {
-                  int day = index + 1;
-                  return Container(
+              itemBuilder: (context, index) {
+                final day = index + 1;
+                return GestureDetector(
+                  onTap: () => _showDayDetail(context, day),
+                  child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(7),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.black12),
                     ),
-                    child: Center(
-                      child: Text(
-                        day.toString().padLeft(2, '0'),
-                        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
-                      ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      day.toString().padLeft(2, '0'),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
+            ),
 
-              SizedBox(height: 40),
-              Text("B. Pekerjaan yang dilakukan",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
+            const SizedBox(height: 32),
 
-              buildTableSection(
-                header: ["Pekerjaan", "Tgl", "Saksi"],
-                emptyText: "Belum ada pekerjaan yang diinput.",
-                buttonText: "+ Tambah Pekerjaan",
-              ),
+            // ===== B. PEKERJAAN =====
+            const Text(
+              "B. Pekerjaan yang Dilakukan",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 14),
 
-              SizedBox(height: 40),
-              Text("C. Materi yang dipelajari",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
+            _pekerjaanCard(
+              pekerjaan: "Membuat UI Login",
+              tanggal: "12 Des 2025",
+              saksi: "Pak Budi",
+            ),
+            _pekerjaanCard(
+              pekerjaan: "Fix Bug API",
+              tanggal: "14 Des 2025",
+              saksi: "Bu Sari",
+            ),
 
-              buildTableSection(
-                header: ["Materi", "Sts", "Tgl"],
-                emptyText: "Belum ada materi yang diinput.",
-                buttonText: "+ Tambah Materi",
-              ),
+            const SizedBox(height: 32),
 
-              SizedBox(height: 18),
-              Row(
-                children: [
-                  Icon(Icons.circle, size: 10, color: Colors.green),
-                  SizedBox(width: 6),
-                  Text("A : Approved"),
-                  SizedBox(width: 16),
-                  Icon(Icons.circle, size: 10, color: Colors.orange),
-                  SizedBox(width: 6),
-                  Text("P : Pending"),
-                  SizedBox(width: 16),
-                  Icon(Icons.circle, size: 10, color: Colors.red),
-                  SizedBox(width: 6),
-                  Text("R : Revisi"),
-                ],
-              ),
+            // ===== C. MATERI =====
+            const Text(
+              "C. Materi yang Dipelajari",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 14),
 
-              SizedBox(height: 40),
-              Text("D. Poin",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
+            _materiCard(
+              materi: "Laravel Authentication",
+              status: "A",
+              tanggal: "10 Des 2025",
+            ),
+            _materiCard(
+              materi: "REST API",
+              status: "P",
+              tanggal: "13 Des 2025",
+            ),
 
-              buildPoinTable(),
-              SizedBox(height: 60),
+            const SizedBox(height: 32),
+
+            // ===== D. POIN =====
+            const Text(
+              "D. Poin",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 14),
+
+            _poinTile("Project / Progres Belajar", 5),
+            _poinTile("Pertanyaan / Materi", 3),
+            _poinTile("Ceklist Pembiasaan", 7),
+            _poinTile("Total Poin", 15, isTotal: true),
+
+            const SizedBox(height: 80),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ===== PEKERJAAN =====
+  static Widget _pekerjaanCard({
+    required String pekerjaan,
+    required String tanggal,
+    required String saksi,
+  }) {
+    return Card(
+      color: Colors.white,
+      surfaceTintColor: Colors.white,
+      elevation: 0,
+      margin: const EdgeInsets.only(bottom: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: const BorderSide(color: Colors.black12),
+      ),
+      child: ListTile(
+        title: Text(pekerjaan, style: const TextStyle(fontWeight: FontWeight.w600)),
+        subtitle: Text("Tanggal: $tanggal"),
+        trailing: const Icon(Icons.chevron_right),
+      ),
+    );
+  }
+
+  // ===== MATERI =====
+  static Widget _materiCard({
+    required String materi,
+    required String status,
+    required String tanggal,
+  }) {
+    final Color statusColor =
+        status == "A" ? Colors.green : status == "P" ? Colors.orange : Colors.red;
+
+    return Card(
+      color: Colors.white,
+      surfaceTintColor: Colors.white, 
+      elevation: 0,
+      margin: const EdgeInsets.only(bottom: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: const BorderSide(color: Colors.black12),
+      ),
+      child: Theme(
+        data: ThemeData(
+          dividerColor: Colors.transparent,
+        ),
+        child: ExpansionTile(
+          tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+          childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          title: Text(materi, style: const TextStyle(fontWeight: FontWeight.w600)),
+          subtitle: Row(
+            children: [
+              Icon(Icons.circle, size: 10, color: statusColor),
+              const SizedBox(width: 6),
+              Text("Status: $status"),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildTableSection({
-    required List<String> header,
-    required String emptyText,
-    required String buttonText,
-  }) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blue.shade50,
-              border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
-            ),
-            child: Row(
-              children: List.generate(
-                header.length,
-                (i) => Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(header[i],
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(12),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(emptyText, style: TextStyle(color: Colors.grey[700])),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(top: BorderSide(color: Colors.grey.shade300)),
-            ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.all(12),
-                child: Text(buttonText,
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.w600)),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildPoinTable() {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blue.shade50,
-              border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text("Kategori Poin",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text("Poin",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          poinRow("(5) Mengerjakan project / update progres belajar"),
-          poinRow("(1 - 5) Poin dari pertanyaan atau laporan materi"),
-          poinRow("Jumlah poin minggu ini"),
-          poinRow("Jumlah poin ceklist pembiasaan"),
-          poinRow("Jumlah keseluruhan poin", isLast: true),
-        ],
-      ),
-    );
-  }
-
-  Widget poinRow(String text, {bool isLast = false}) {
-    return Column(
-      children: [
-        Row(
           children: [
-            Expanded(
-              flex: 4,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(text),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text("0"),
-              ),
+            Row(
+              children: [
+                const Icon(Icons.calendar_today, size: 16),
+                const SizedBox(width: 8),
+                Text("Tanggal: $tanggal"),
+              ],
             ),
           ],
         ),
-        if (!isLast) Divider(height: 1, color: Colors.grey.shade300),
-      ],
+      ),
+    );
+  }
+
+  // ===== POIN =====
+  static Widget _poinTile(String label, int poin, {bool isTotal = false}) {
+    return Card(
+      color: Colors.white,
+      surfaceTintColor: Colors.white,
+      elevation: 0,
+      margin: const EdgeInsets.only(bottom: 10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(
+          color: isTotal ? Colors.blue : Colors.black12,
+        ),
+      ),
+      child: ListTile(
+        title: Text(
+          label,
+          style: TextStyle(fontWeight: isTotal ? FontWeight.bold : FontWeight.normal),
+        ),
+        trailing: Text(
+          poin.toString(),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: isTotal ? Colors.blue : Colors.black,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ===== DETAIL HARI =====
+  static void _showDayDetail(BuildContext context, int day) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (_) => Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Detail Hari $day",
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            const Text("Status: Sudah diisi"),
+            const SizedBox(height: 6),
+            const Text("Catatan: Pembiasaan berjalan baik."),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
     );
   }
 }
+                          
