@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:jurnalku_mobile/services/login_services.dart';
+import 'package:jurnalku_mobile/models/login_model.dart';
 
 void main() {
-  runApp(const LoginApp());
+  runApp(LoginApp());
 }
 
 class LoginApp extends StatelessWidget {
-  const LoginApp({super.key});
+  LoginApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: LoginPage(),
     );
   }
 }
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -25,27 +28,59 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
+
+  final TextEditingController _nisController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final AuthServices _authServices = AuthServices();
+
+  Future<void> _handleLogin() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final response = await _authServices.login(
+        nis: _nisController.text,
+        password: _passwordController.text,
+      );
+
+      if (response.success) {
+        Navigator.pushReplacementNamed(context, '/dashboard');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toString())),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _nisController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // ===============================================================
-          //                        SCROLL CONTENT
-          // ===============================================================
           Scrollbar(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // ===================== LOGIN SECTION =====================
                   Container(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height,
-                    decoration: const BoxDecoration(color: Color(0xFF0D47A1)),
+                    decoration: BoxDecoration(color: Color(0xFF0D47A1)),
                     child: Stack(
                       children: [
-                        // =============== BACKGROUND IMAGE RIGHT ===============
                         Positioned.fill(
                           child: Align(
                             alignment: Alignment.centerRight,
@@ -56,15 +91,13 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-
-                        // ================= LOGIN CARD =================
                         Center(
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Container(
                               width: 420,
-                              margin: const EdgeInsets.only(left: 80),
-                              padding: const EdgeInsets.all(35),
+                              margin: EdgeInsets.only(left: 80),
+                              padding: EdgeInsets.all(35),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(0),
@@ -72,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                                   BoxShadow(
                                     color: Colors.black.withOpacity(0.15),
                                     blurRadius: 30,
-                                    offset: const Offset(0, 10),
+                                    offset: Offset(0, 10),
                                   ),
                                 ],
                               ),
@@ -80,37 +113,36 @@ class _LoginPageState extends State<LoginPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
+                                  Text(
                                     "Masuk untuk memulai ",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black87,
                                     ),
                                   ),
-                                  const Text(
+                                  Text(
                                     "Jurnalku",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w700,
                                       color: Color(0xFF0D47A1),
                                     ),
                                   ),
-
-                                  const SizedBox(height: 30),
-
-                                  const Text(
+                                  SizedBox(height: 30),
+                                  Text(
                                     "Username atau NIS",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const SizedBox(height: 6),
+                                  SizedBox(height: 6),
                                   TextField(
+                                    controller: _nisController, // controller NIS
                                     decoration: InputDecoration(
                                       hintText: "Masukkan username atau NIS",
-                                      hintStyle: TextStyle(
+                                      hintStyle: GoogleFonts.poppins(
                                         color: Color(0xFF9E9E9E),
                                       ),
                                       filled: true,
@@ -127,27 +159,26 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Color(0xFFE0E0E0),
+                                          color: Color(0xFF0D47A1), 
                                         ),
                                       ),
                                     ),
                                   ),
-
-                                  const SizedBox(height: 25),
-
-                                  const Text(
+                                  SizedBox(height: 25),
+                                  Text(
                                     "Password",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const SizedBox(height: 6),
+                                  SizedBox(height: 6),
                                   TextField(
+                                    controller: _passwordController, // controller password
                                     obscureText: !_isPasswordVisible,
                                     decoration: InputDecoration(
                                       hintText: "Masukkan password",
-                                      hintStyle: TextStyle(
+                                      hintStyle: GoogleFonts.poppins(
                                         color: Color(0xFF9E9E9E),
                                       ),
                                       filled: true,
@@ -164,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Color(0xFFE0E0E0),
+                                          color: Color(0xFF0D47A1),
                                         ),
                                       ),
                                       suffixIcon: IconButton(
@@ -184,40 +215,39 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                     ),
                                   ),
-
-                                  const SizedBox(height: 30),
-
+                                  SizedBox(height: 30),
                                   SizedBox(
                                     width: double.infinity,
                                     height: 48,
                                     child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(context, '/dashboard');
-                                      },
+                                      onPressed: _isLoading ? null : _handleLogin, 
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xFF0D47A1),
-                                        shape: const RoundedRectangleBorder(
+                                        backgroundColor: Color(0xFF0D47A1),
+                                        shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.zero,
                                         ),
                                       ),
-                                      child: const Text(
-                                        'Masuk',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
+                                      child: _isLoading 
+                                        ? SizedBox(
+                                            height: 20, 
+                                            width: 20, 
+                                            child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
+                                          )
+                                        : Text(
+                                            'Masuk',
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
                                     ),
                                   ),
-
-
-                                  const SizedBox(height: 25),
-
-                                  const Center(
+                                  SizedBox(height: 25),
+                                  Center(
                                     child: Text(
                                       "Lupa password? Hubungi guru laboran.",
-                                      style: TextStyle(
+                                      style: GoogleFonts.poppins(
                                         color: Colors.black54,
                                         fontSize: 13,
                                       ),
@@ -231,53 +261,47 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-
-                  // =================== BOTTOM SECTION ===================
-                  const BottomSection(),
+                  BottomSection(),
                 ],
               ),
             ),
           ),
-
-          // ===============================================================
-          //                        FIXED BUTTON (JELAJAHI SISWA)
-          // ===============================================================
           Positioned(
             bottom: 25,
             right: 25,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
-                color: const Color(0xFF003C8F),
+                color: Color(0xFF003C8F),
                 borderRadius: BorderRadius.circular(50),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
                     blurRadius: 10,
-                    offset: const Offset(0, 4),
+                    offset: Offset(0, 4),
                   ),
                 ],
               ),
               child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/jelajahi');
-                      },
-                      borderRadius: BorderRadius.circular(10), // samakan dengan Container
-                      child: Row(
-                        children: const [
-                          Icon(Icons.search, color: Colors.white, size: 20),
-                          SizedBox(width: 10),
-                          Text(
-                            "Jelajahi siswa",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
+                onTap: () {
+                  Navigator.pushNamed(context, '/jelajahi');
+                },
+                borderRadius: BorderRadius.circular(10),
+                child: Row(
+                  children: [
+                    Icon(Icons.search, color: Colors.white, size: 20),
+                    SizedBox(width: 10),
+                    Text(
+                      "Jelajahi siswa",
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
@@ -286,46 +310,39 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// ============================================================================
-//                          BOTTOM SECTION (FITUR)
-// ============================================================================
 class BottomSection extends StatelessWidget {
-  const BottomSection({super.key});
+  BottomSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 50),
+      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "Menyatukan Upaya untuk Kemajuan Siswa",
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               fontSize: 32,
               fontWeight: FontWeight.w700,
               color: Color(0xFF0C2E4E),
             ),
             textAlign: TextAlign.center,
           ),
-
-          const SizedBox(height: 15),
-
-          const Text(
+          SizedBox(height: 15),
+          Text(
             "Jurnalku adalah aplikasi cerdas yang membantu guru dan siswa dalam "
             "memantau dan mengelola kompetensi keahlian siswa secara efektif.",
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               fontSize: 17,
               height: 1.5,
               color: Color(0xFF4B5563),
             ),
             textAlign: TextAlign.center,
           ),
-
-          const SizedBox(height: 50),
-
+          SizedBox(height: 50),
           Wrap(
             spacing: 40,
             runSpacing: 40,
@@ -333,60 +350,56 @@ class BottomSection extends StatelessWidget {
             children: [
               _item(
                 icon: Icons.school,
-                color: const Color(0xFFFCE7A5),
+                color: Color(0xFFFCE7A5),
                 title: "Dirancang untuk Sekolah Kami",
-                desc:
-                    "Dikembangkan khusus untuk memenuhi kebutuhan sekolah kami.",
+                desc: "Dikembangkan khusus untuk memenuhi kebutuhan sekolah kami.",
               ),
               _item(
                 icon: Icons.account_tree,
-                color: const Color(0xFFE3D4FF),
+                color: Color(0xFFE3D4FF),
                 title: "Pemantauan yang Terstruktur",
-                desc:
-                    "Memudahkan guru menyusun dan memantau daftar kompetensi.",
+                desc: "Memudahkan guru menyusun dan memantau daftar kompetensi.",
               ),
               _item(
                 icon: Icons.sports_gymnastics,
-                color: const Color(0xFFCDEBFF),
+                color: Color(0xFFCDEBFF),
                 title: "Fitur Praktis dan Bermanfaat",
-                desc:
-                    "Termasuk reminder otomatis, grafik, dan analisis mendalam.",
+                desc: "Termasuk reminder otomatis, grafik, dan analisis mendalam.",
               ),
               _item(
                 icon: Icons.how_to_reg,
-                color: const Color(0xFFFFD7A5),
+                color: Color(0xFFFFD7A5),
                 title: "Pengajuan Kompetensi oleh Siswa",
-                desc:
-                    "Siswa dapat mengajukan kompetensi untuk diverifikasi guru.",
+                desc: "Siswa dapat mengajukan kompetensi untuk diverifikasi guru.",
               ),
               _item(
                 icon: Icons.edit_document,
-                color: const Color(0xFFD0FFD6),
+                color: Color(0xFFD0FFD6),
                 title: "Validasi dan Tanda Tangan Guru",
-                desc:
-                    "Kompetensi disetujui akan diberi tanda terima dan ttd guru.",
+                desc: "Kompetensi disetujui akan diberi tanda terima dan ttd guru.",
               ),
               _item(
                 icon: Icons.desktop_mac,
-                color: const Color(0xFFFFD0DD),
+                color: Color(0xFFFFD0DD),
                 title: "Pantauan Real-Time",
-                desc:
-                    "Monitoring langsung menciptakan lingkungan belajar efisien.",
+                desc: "Monitoring langsung menciptakan lingkungan belajar efisien.",
               ),
             ],
           ),
-
-          const SizedBox(height: 60),
-
+          SizedBox(height: 60),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 22),
-            color: const Color(0xFF003C8F),
-            child: const Center(
-              child: Text(
-                "© GEN-28 PPLG SMK Wikrama Bogor. All Rights Reserved.",
-                style: TextStyle(color: Colors.white, fontSize: 14),
+            height: 64,
+            color: Color(0xFF003C8F),
+            alignment: Alignment.center,
+            child: Text(
+              "© GEN-28 PPLG SMK Wikrama Bogor. All Rights Reserved.",
+              style: GoogleFonts.poppins(
+                color: Colors.white.withOpacity(0.9),
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         ],
@@ -414,23 +427,23 @@ class BottomSection extends StatelessWidget {
             ),
             child: Icon(icon, size: 28, color: Colors.black87),
           ),
-          const SizedBox(width: 18),
+          SizedBox(width: 18),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
                     color: Color(0xFF0C2E4E),
                   ),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6),
                 Text(
                   desc,
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     height: 1.4,
                     color: Color(0xFF4B5563),
